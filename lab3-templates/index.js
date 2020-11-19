@@ -7,6 +7,14 @@ app.set('view engine', 'hbs')
 // enable static files
 app.use(express.static('public'))
 
+// setup handlebar helpers
+// be sure to `yarn add handlebar-helpers` first
+var handlebars = require('handlebars');
+var helpers = require('handlebars-helpers')({
+  handlebars: hbs.handlebars
+});
+
+
 // <---- end EXPRESS SETUP ------------------------
 
 // BEGIN ROUTES
@@ -23,6 +31,21 @@ app.get('/hi/:name', (req,res)=>{
         'luckyNumber' : luckyNumber
     })
 })
+
+app.get('/animal/adoption', (req,res)=>{
+    let animals = ['cat', 'dog', 'horse', 'tortise'];
+    res.render('adopt.hbs',{
+        'animals': animals
+    })
+})
+
+app.get('/animal/:choice', (req,res)=>{
+   let choice = req.params.choice;
+    res.render('picture.hbs', {
+       'animal_choice':choice
+    })
+})
+
 
 // END ROUTES
 
