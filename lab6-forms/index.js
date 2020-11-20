@@ -20,8 +20,14 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-// BEGIN ROUTES
+const fruitsLookup = {
+    'apple':3,
+    'durian':15,
+    'orange':6,
+    'banana':4
+}
 
+// BEGIN ROUTES
 app.get('/food', (req,res)=>{
     res.render('enter_food.hbs')
 })
@@ -68,6 +74,23 @@ app.post('/calculate_bmi', (req,res)=>{
     res.render('bmi_results.hbs',{
         'bmi': bmi
     })
+})
+
+// display the form
+app.get('/fruits', (req,res)=>{
+    res.render('fruits.hbs');
+})
+
+app.post('/fruits', (req,res)=>{
+    let fruits = req.body.items;
+    let totalCost = 0;
+    for (let f of fruits) {
+        totalCost += fruitsLookup[f];
+    }
+    res.render('fruit_cost.hbs',{
+        'totalCost': totalCost
+    })
+
 })
 
 // END ROUTES
