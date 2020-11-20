@@ -28,7 +28,6 @@ app.get('/contact-us', (req,res)=>{
     res.render('contact-us.hbs')
 })
 
-
 app.listen(3000, ()=>{
     console.log("Server started")
 })
