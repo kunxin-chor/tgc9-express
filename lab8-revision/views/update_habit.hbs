@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        <label>Habit Name:</label>
+        <input type="text" name="habit-name" value="{{habit.name}}"/>
+        <label>Count:</label>
+        <input type="text" name="count" value="{{habit.count}}"/>
+        <label>Tags</label>
+        <input type="checkbox" name="tags" value="important" {{#inArray habit.tags 'important'}}checked{{/inArray}} />Important
+        <input type="checkbox" name="tags" value="fitness" {{#inArray habit.tags 'fitness'}}checked{{/inArray}}/>Fitness
+        <input type="checkbox" name="tags" value="finanical" {{#inArray habit.tags 'finanical'}}checked{{/inArray}}/>Finanical
+        <input type="checkbox" name="tags" value="self-care" {{#inArray habit.tags 'self-care'}}checked{{/inArray}}/>Self-care
+        <input type="submit"/>
+    </form>
+</body>
+</html>
